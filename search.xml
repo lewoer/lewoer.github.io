@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Static vs Instance Methods]]></title>
+    <title><![CDATA[Composition]]></title>
+    <url>%2Fposts%2F8ae3cc90%2F</url>
+    <content type="text"><![CDATA[任何软件系统的设计，其中的一个基本的活动便是要建立各个类之间的联系。关联类之间的两个基本的方式就是 inheritance和 composition。虽然编译器和Java虚拟机（JVM）在使用继承时会为你做很多工作，但在使用组合时也可以获得继承功能。Inheritance是 IS-A关系，而 composition是 HAS-A关系。You do composition by having an instance of another class C as a field of your class, instead of extending C在下面的例子中，Apple被称为 front-end class ，而Fruit被称为 back-end class。在组合关系中，前端类在它的一个instance variable中保存了对于后端类的引用。1234567891011121314151617181920// inheritanceclass Fruit &#123; //...&#125;class Apple extends Fruit &#123; //...&#125;// composition// Apple类有一个instance variable，保存了对于Fruit对象的引用。class Fruit &#123; //...&#125;class Apple &#123; private Fruit fruit = new Fruit();&#125;udemyComposition代码学会在哪种情况下使用composition，哪种情况使用inheritance 。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Static vs Instance (Method,variable)]]></title>
     <url>%2Fposts%2Fad7a479a%2F</url>
-    <content type="text"><![CDATA[Static methodStatic methods 声明使用 static修饰符每一个类的实例instance共享同一个静态变量（static variable）。变量变化，其他实例也会变化。Static variable应用不是很频繁，但很有用。比如读取用户输入使用 Scanner声明scanner为静态变量，这样 静态方法能够直接访问。123456789101112131415161718192021// 对应上面第二条class Dog &#123; private static String name; // 静态变量传递到constructor public Dog(String name) &#123; Dog.name = name; &#125; public void printName() &#123; System.out.println("name= " + name); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; Dog rex = new Dog("rex"); // create instance rex Dog fluffy = new Dog("fluffy"); // create instance fluffy rex.printName(); // print fluffy fluffy.printName(); // print fluffy &#125;&#125;Instance variable它们没有关键字 staticinstance variable也称为field或member variableinstance variable属于一个类的实例。每一个instance都有一个instance variable的副本。每一个实例都有一个不同的stateInstance variable代表着instance的state。1234567891011121314151617181920class Dog &#123; private String name; // 静态变量传递到constructor public Dog(String name) &#123; Dog.name = name; &#125; public void printName() &#123; System.out.println("name= " + name); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; Dog rex = new Dog("rex"); // create instance rex Dog fluffy = new Dog("fluffy"); // create instance fluffy rex.printName(); // print rex fluffy.printName(); // print fluffy &#125;&#125;]]></content>
+    <content type="text"><![CDATA[Static MethodsStatic methods声明使用 static修饰符Static methods不能直接访问 instance methods 和 instance variable通常用于一些操作，这些operations不需要从类的实例获取数据（from “this”）在 static methods我们不能使用 this关键字当你看见一个方法 不使用instance variable，这个方法应该被声明为 static method。比如说 main是一个static method。在应用启动的时候，被JVM调用。static method别调用的时候为 ClassName.MethodName();or mrthodName();仅仅在同一个类中。1234567891011121314151617class Calculator &#123; public static void printSum(int a, int b) &#123; System.Out.println("sum= " + (a + b)); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; // 对应上面的规则 Calculator.printSum(5, 10); printHello(); &#125; public static void printHello() &#123; System.Out.println("Hello"); &#125;&#125;Instance methodinstance methods属于一个类的实例为了使用 instance methods我们先使用 new实例化类instance methods能够直接访问(instance,static) (methods,variable).1234567891011class Dog &#123; public void bark() &#123; System.Out.println("woof"); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; Dog rex = new Dog(); // create instance rex.bark(); // call instance method &#125;&#125;一个方法是否应该为 static的判断条件。Static variableStatic methods 声明使用 static修饰符每一个类的实例instance共享同一个静态变量（static variable）。变量变化，其他实例也会变化。Static variable应用不是很频繁，但很有用。比如读取用户输入使用 Scanner声明scanner为静态变量，这样 静态方法能够直接访问。123456789101112131415161718192021// 对应上面第二条class Dog &#123; private static String name; // 静态变量传递到constructor public Dog(String name) &#123; Dog.name = name; &#125; public void printName() &#123; System.out.println("name= " + name); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; Dog rex = new Dog("rex"); // create instance rex Dog fluffy = new Dog("fluffy"); // create instance fluffy rex.printName(); // print fluffy fluffy.printName(); // print fluffy &#125;&#125;Instance variable它们没有关键字 staticinstance variable也称为field或member variableinstance variable属于一个类的实例。每一个instance都有一个instance variable的副本。每一个实例都有一个不同的stateInstance variable代表着instance的state。1234567891011121314151617181920class Dog &#123; private String name; // 静态变量传递到constructor public Dog(String name) &#123; Dog.name = name; &#125; public void printName() &#123; System.out.println("name= " + name); &#125;&#125;public class Main &#123; public static void main(String[] args) &#123; Dog rex = new Dog("rex"); // create instance rex Dog fluffy = new Dog("fluffy"); // create instance fluffy rex.printName(); // print rex fluffy.printName(); // print fluffy &#125;&#125;]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -43,6 +54,11 @@
       <tags>
         <tag>java</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2Fposts%2F0%2F</url>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[Git]]></title>
