@@ -1,0 +1,325 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="java,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="Lambda 表达式是可按引用传递的代码块。它们类似于一些其他编程语言中的闭包：它们是实现某项功能的代码，可接受一个或多个输入参数，而且可返回一个结果值。闭包是在一个上下文中定义的.Java 8 lambda 表达式其实是匿名内部类的一种特殊化.lambda简介Lambda 表达式始终是 Java 8 称为函数式接口的一个对象的实现：定义单一抽象方法的 interface 类。对单一抽象方法的限制"><meta name="keywords" content="java"><meta property="og:type" content="article"><meta property="og:title" content="Lambda Expression"><meta property="og:url" content="http://lewoer.github.io/posts/caddbeba/index.html"><meta property="og:site_name" content="Touch Future"><meta property="og:description" content="Lambda 表达式是可按引用传递的代码块。它们类似于一些其他编程语言中的闭包：它们是实现某项功能的代码，可接受一个或多个输入参数，而且可返回一个结果值。闭包是在一个上下文中定义的.Java 8 lambda 表达式其实是匿名内部类的一种特殊化.lambda简介Lambda 表达式始终是 Java 8 称为函数式接口的一个对象的实现：定义单一抽象方法的 interface 类。对单一抽象方法的限制"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://raw.githubusercontent.com/lewoer/picBed/master/chaining.png"><meta property="og:image" content="https://raw.githubusercontent.com/lewoer/picBed/master/streamPipeline.png"><meta property="og:updated_time" content="2019-02-13T13:26:52.981Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Lambda Expression"><meta name="twitter:description" content="Lambda 表达式是可按引用传递的代码块。它们类似于一些其他编程语言中的闭包：它们是实现某项功能的代码，可接受一个或多个输入参数，而且可返回一个结果值。闭包是在一个上下文中定义的.Java 8 lambda 表达式其实是匿名内部类的一种特殊化.lambda简介Lambda 表达式始终是 Java 8 称为函数式接口的一个对象的实现：定义单一抽象方法的 interface 类。对单一抽象方法的限制"><meta name="twitter:image" content="https://raw.githubusercontent.com/lewoer/picBed/master/chaining.png"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Muse",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://lewoer.github.io/posts/caddbeba/"><title>Lambda Expression | Touch Future</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Touch Future</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle"></p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>简介</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://lewoer.github.io/posts/caddbeba/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="ShiLe"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Touch Future"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Lambda Expression</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-06T17:09:48+08:00">2019-02-06 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/the-complete-java-developer-course/" itemprop="url" rel="index"><span itemprop="name">the complete java developer course</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/posts/caddbeba/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/caddbeba/" itemprop="commentCount"></span> </a></span><span id="/posts/caddbeba/" class="leancloud_visitors" data-flag-title="Lambda Expression"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-eye"></i> </span><span class="post-meta-item-text">热度 </span><span class="leancloud-visitors-count"></span> <span>℃</span></span></div></header><div class="post-body" itemprop="articleBody"><p>Lambda 表达式是可按引用传递的代码块。它们类似于一些其他编程语言中的闭包：它们是实现某项功能的代码，可接受一个或多个输入参数，而且可返回一个结果值。闭包是在一个上下文中定义的.</p><p>Java 8 lambda 表达式其实是匿名内部类的一种特殊化.</p><h2 id="lambda简介"><a href="#lambda简介" class="headerlink" title="lambda简介"></a>lambda简介</h2><p>Lambda 表达式始终是 Java 8 称为函数式接口的一个对象的实现：定义单一抽象方法的 interface 类。对单一抽象方法的限制很重要，因为 lambda 表达式语法不使用方法名。</p><p>表达式使用了 duck typing（匹配参数和返回类型),确保所提供的 lambda 与预期的接口方法相兼容.</p><h2 id="标准函数式接口"><a href="#标准函数式接口" class="headerlink" title="标准函数式接口"></a>标准函数式接口</h2><p>新的 java.util.function 包定义旨在使用 lambdas 的广泛函数式接口。这些接口分为几大类</p><ul><li>Function：接受一个参数，基于参数值返回结果</li><li>Predicate：接受一个参数，基于参数值返回一个布尔值</li><li>BiFunction：接受两个参数，基于参数值返回结果</li><li>Supplier：不接受参数，返回一个结果</li><li>Consumer：接受一个参数，无结果 (void)</li></ul><h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p>在复杂应用中,我们想要对许多案例运行相似的代码, 但是这个代码30行我们运行, 只有2行依据案例经常变化,所以不要使用有函数的接口,这种情况需要在合适的点被调用, 需要为每种案例写不同的方法. 我们可以使用Function传递变化的部分,使得代码更加精确.</p><p>第二种是callback.我们从后台线程抓取数据,当数据准备好,我们想要在后台线程将消息传递出去.但是我们想要的经常变化,所以数据抓取好,我们要指定什么代码执行.</p><ol><li>当后台任务执行完,可以notify thread, 然后执行代码</li><li>Functions</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Employee,String&gt; getFirstName = (Employee employee) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> employee.getName().substring(<span class="number">0</span>,employee.getName().indexOf(<span class="string">' '</span>));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Function&lt;Employee,String&gt; getFirstName = (Employee employee) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> employee.getName().substring(<span class="number">0</span>,employee.getName().indexOf(<span class="string">' '</span>));</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Random random1 = <span class="keyword">new</span> Random();</span><br><span class="line"><span class="keyword">for</span> (Employee employee : employees) &#123;</span><br><span class="line">    <span class="keyword">if</span> (random1.nextBoolean()) &#123;</span><br><span class="line">        System.out.println(getAName(getFirstName,employee));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(getAName(getLastName,employee));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getAName</span><span class="params">(Function&lt;Employee,String&gt; getName, Employee employee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getName.apply(employee);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Function接口的callback</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 之前</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ReSizeImage</span></span>&#123;</span><br><span class="line">    <span class="function">Image <span class="title">resizeImage</span><span class="params">(Image image)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Image&gt; <span class="title">runWhenDone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 假定我们访问ImageResizer实例(可能Runable对象构建的时候提供), images有从许多image</span></span><br><span class="line">     <span class="keyword">for</span> (Image image : images) &#123;</span><br><span class="line">        resizedImages.add(resizer.resizeImage(image))</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不用写interface</span></span><br><span class="line">Function&lt;Image,Image&gt; resizer1 = (Image image)-&gt; &#123;resize using algorithm <span class="number">1</span>&#125;</span><br><span class="line">Function&lt;Image,Image&gt; resizer2 = (Image image)-&gt; &#123;resize using algorithm <span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Image&gt; <span class="title">runWhenDone</span><span class="params">(Function&lt;Image, image&gt; resizer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (Image image : images) &#123;</span><br><span class="line">        resizedImages.add(resizer.apply(image));</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Consumer接口"><a href="#Consumer接口" class="headerlink" title="Consumer接口"></a>Consumer接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Consumer</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Performs this operation on the given argument.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t the input argument</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span> </span>&#123;</span><br><span class="line">        Objects.requireNonNull(action);</span><br><span class="line">        <span class="keyword">for</span> (T t : <span class="keyword">this</span>) &#123;</span><br><span class="line">            action.accept(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------------*/</span></span><br><span class="line"></span><br><span class="line">employees.forEach(employee -&gt; &#123;</span><br><span class="line">    String lastName = employee.getName().substring(employee.getName().indexOf(<span class="string">' '</span>) + <span class="number">1</span>);</span><br><span class="line">    System.out.println(<span class="string">"Last name is : "</span> + lastName);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="Predicate接口"><a href="#Predicate接口" class="headerlink" title="Predicate接口"></a>Predicate接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"><span class="comment">// if the input argument matches the predicate,return true</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>snippet</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用Predicate函数接口,接受一个参数,返回一个boolean值</span></span><br><span class="line">printEmployeeByAge(employees,<span class="string">"Employee over 30"</span>, employee -&gt; employee.getAge() &gt; <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printEmployeeByAge</span><span class="params">(List&lt;Employee&gt; employees, String ageText, Predicate&lt;Employee&gt; ageCondition)</span> </span>&#123;</span><br><span class="line">    System.out.println(ageText);</span><br><span class="line">    System.out.println(<span class="string">"================"</span>);</span><br><span class="line">    <span class="keyword">for</span> (Employee employee : employees) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ageCondition.test(employee)) &#123;</span><br><span class="line">            System.out.println(employee.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Supplier"><a href="#Supplier" class="headerlink" title="Supplier"></a>Supplier</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不接受参数，返回一个结果</span></span><br><span class="line">Random random = <span class="keyword">new</span> Random();</span><br><span class="line">Supplier&lt;Integer&gt; randomSuplier = () -&gt; random.nextInt();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">20</span>; i++) &#123;</span><br><span class="line">    System.out.println(randomSuplier.get());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/lewoer/picBed/master/chaining.png" alt="chaining"></p><h2 id="method-reference"><a href="#method-reference" class="headerlink" title="method reference"></a>method reference</h2><p>使用lambda创建匿名方法,然而有时候lambda只调用已经存在的方法, 此时应该使用方法引用.</p><ul><li>静态方法的引用(<code>ContainingClass::staticMethodName</code>)</li><li>特定对象的实例方法的引用(<code>containingObject::instanceMethodName</code>)</li><li>特定类型任意对象的实例方法的调用(<code>ContainingType::methodName</code>)</li><li>构造器的调用(<code>ClassName::new</code>)</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> Sex &#123;</span><br><span class="line">        MALE, FEMALE</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String name;</span><br><span class="line">    LocalDate birthday;</span><br><span class="line">    Sex gender;</span><br><span class="line">    String emailAddress;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Calendar <span class="title">getBirthday</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> birthday;</span><br><span class="line">    &#125;    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">compareByAge</span><span class="params">(Person a, Person b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.birthday.compareTo(b.birthday);</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodReferencesTest</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// The method transferElements copies elements from one collection to</span></span><br><span class="line">    <span class="comment">// another</span></span><br><span class="line">   </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T, SOURCE extends Collection&lt;T&gt;, DEST extends Collection&lt;T&gt;&gt;</span><br><span class="line">        <span class="function">DEST <span class="title">transferElements</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            SOURCE sourceCollection,</span></span></span><br><span class="line"><span class="function"><span class="params">            Supplier&lt;DEST&gt; collectionFactory)</span> </span>&#123;</span><br><span class="line">         </span><br><span class="line">            DEST result = collectionFactory.get();</span><br><span class="line">            <span class="keyword">for</span> (T t : sourceCollection) &#123;</span><br><span class="line">                result.add(t);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">    &#125;  </span><br><span class="line">       </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">        List&lt;Person&gt; roster = Person.createRoster();        </span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> (Person p : roster) &#123;</span><br><span class="line">            p.printPerson();</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">         </span><br><span class="line">        Person[] rosterAsArray = </span><br><span class="line">            roster.toArray(<span class="keyword">new</span> Person[roster.size()]);</span><br><span class="line">         </span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">PersonAgeComparator</span></span></span><br><span class="line"><span class="class">            <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person a, Person b)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a.getBirthday().compareTo(b.getBirthday());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// Without method reference</span></span><br><span class="line">        Arrays.sort(rosterAsArray, <span class="keyword">new</span> PersonAgeComparator());</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// With lambda expression</span></span><br><span class="line">        Arrays.sort(rosterAsArray,</span><br><span class="line">            (Person a, Person b) -&gt; &#123;</span><br><span class="line">                <span class="keyword">return</span> a.getBirthday().compareTo(b.getBirthday());</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// With method reference</span></span><br><span class="line">        Arrays.sort(rosterAsArray, Person::compareByAge);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// Reference to an instance method of a particular object</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">ComparisonProvider</span> </span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareByName</span><span class="params">(Person a,</span></span></span><br><span class="line"><span class="function"><span class="params">                Person b)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a.getName().compareTo(b.getName());</span><br><span class="line">            &#125;</span><br><span class="line">         </span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareByAge</span><span class="params">(Person a,</span></span></span><br><span class="line"><span class="function"><span class="params">                Person b)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> a.getBirthday().compareTo(b.getBirthday());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ComparisonProvider myComparisonProvider = <span class="keyword">new</span> ComparisonProvider();</span><br><span class="line">        Arrays.sort(rosterAsArray, myComparisonProvider::compareByName);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">// Reference to an instance method</span></span><br><span class="line">        <span class="comment">// of an arbitrary object of a particular type</span></span><br><span class="line">         </span><br><span class="line">        String[] stringArray = &#123; <span class="string">"Barbara"</span>, <span class="string">"James"</span>, <span class="string">"Mary"</span>, <span class="string">"John"</span>,</span><br><span class="line">            <span class="string">"Patricia"</span>, <span class="string">"Robert"</span>, <span class="string">"Michael"</span>, <span class="string">"Linda"</span> &#125;;</span><br><span class="line">        Arrays.sort(stringArray, String::compareToIgnoreCase);</span><br><span class="line"> </span><br><span class="line">        Set&lt;Person&gt; rosterSetLambda =</span><br><span class="line">            transferElements(roster, () -&gt; &#123; <span class="keyword">return</span> <span class="keyword">new</span> HashSet&lt;&gt;(); &#125;);</span><br><span class="line">         </span><br><span class="line">        Set&lt;Person&gt; rosterSet = transferElements(</span><br><span class="line">            roster, HashSet::<span class="keyword">new</span>);</span><br><span class="line">        System.out.println(<span class="string">"Printing rosterSet:"</span>);</span><br><span class="line">        rosterSet.stream().forEach(p -&gt; p.printPerson());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> List&lt;String&gt; someBingoNumbers = Arrays.asList(</span><br><span class="line">                <span class="string">"N40"</span>,<span class="string">"N35"</span>,</span><br><span class="line">                <span class="string">"B12"</span>,<span class="string">"B6"</span>,</span><br><span class="line">                <span class="string">"G53"</span>,<span class="string">"G49"</span>,<span class="string">"G60"</span>,<span class="string">"G45"</span>,<span class="string">"g64"</span>,</span><br><span class="line">                <span class="string">"I26"</span>,<span class="string">"I17"</span>,<span class="string">"I29"</span>,</span><br><span class="line">                <span class="string">"O19"</span></span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; gNumber = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">someBingoNumbers.stream()</span><br><span class="line">        .map(String::toUpperCase)  <span class="comment">// 方法引用: 使用lambda调用已经存在的方法</span></span><br><span class="line">        .filter(s -&gt; s.startsWith(<span class="string">"G"</span>))</span><br><span class="line">        .sorted()</span><br><span class="line">        .forEach(System.out::println);</span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/lewoer/picBed/master/streamPipeline.png" alt="stream pipeline"></p><p>当一个chain计算时候, stream pipeline就被创建了.stream pipeline由source, 0 or more intermedicate operations, and a terminal operations.source可以是collection, array, I/O channel.</p><p>map()方法将source映射到resulting stream,而且传递到下一步.</p><ul><li>map()方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a stream consisting of the results of applying the given</span></span><br><span class="line"><span class="comment"> * function to the elements of this stream.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line">&lt;R&gt; <span class="function">Stream&lt;R&gt; <span class="title">map</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ? extends R&gt; mapper)</span></span>;</span><br></pre></td></tr></table></figure><ul><li>peek()方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Returns a stream consisting of the elements of this stream, </span></span><br><span class="line"><span class="comment">additionally performing the provided action on each element as elements </span></span><br><span class="line"><span class="comment">are consumed from the resulting stream.*/</span></span><br><span class="line"><span class="function">Stream&lt;T&gt; <span class="title">peek</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> T&gt; action)</span></span>;</span><br><span class="line"></span><br><span class="line">Stream.of(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>, <span class="string">"four"</span>)</span><br><span class="line">   .filter(e -&gt; e.length() &gt; <span class="number">3</span>)</span><br><span class="line">   .peek(e -&gt; System.out.println(<span class="string">"Filtered value: "</span> + e))</span><br><span class="line">   .map(String::toUpperCase)</span><br><span class="line">   .peek(e -&gt; System.out.println(<span class="string">"Mapped value: "</span> + e))</span><br><span class="line">   .collect(Collectors.toList());  <span class="comment">// 无效</span></span><br></pre></td></tr></table></figure><ul><li>flatMap()</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Returns a stream consisting of the results of replacing each element of</span></span><br><span class="line"><span class="comment">this stream with the contents of a mapped stream produced by applying</span></span><br><span class="line"><span class="comment">the provided mapping function to each element.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&lt;R&gt; <span class="function">Stream&lt;R&gt; <span class="title">flatMap</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, ? extends Stream&lt;? extends R&gt;&gt; mapper)</span></span>;</span><br></pre></td></tr></table></figure><p>写lambda的时候可以在自己的水平范围内尽量简单, 不要写的很复杂,这样失去它的意义.</p><p>Stream chain are <strong>lazy evaluated</strong>. Nothing happens happens until a terminal operation is added to the chain</p><h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p><a href="https://www.ibm.com/developerworks/cn/java/j-java8lambdas/index.html" target="_blank" rel="noopener">了解 Lambda 表达式和接口类更改如何使得 Java 8 成为一种新语言</a></p><p><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html" target="_blank" rel="noopener">java oracle lambda tutorial</a></p></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> ShiLe</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://lewoer.github.io/posts/caddbeba/" title="Lambda Expression">http://lewoer.github.io/posts/caddbeba/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/java/" rel="tag"># java</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/posts/9123c35c/" rel="next" title="Concurrent"><i class="fa fa-chevron-left"></i> Concurrent</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="ShiLe"><p class="site-author-name" itemprop="name">ShiLe</p><p class="site-description motion-element" itemprop="description">编程，读书，滑板，英语</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">18</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">4</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">4</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/lewoer" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="https://www.instagram.com/lewoerspy/" target="_blank" title="Instagram"><i class="fa fa-fw fa-instagram"></i> Instagram</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda简介"><span class="nav-number">1.</span> <span class="nav-text">lambda简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准函数式接口"><span class="nav-number">2.</span> <span class="nav-text">标准函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function"><span class="nav-number">2.1.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer接口"><span class="nav-number">2.2.</span> <span class="nav-text">Consumer接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicate接口"><span class="nav-number">2.3.</span> <span class="nav-text">Predicate接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supplier"><span class="nav-number">2.4.</span> <span class="nav-text">Supplier</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#method-reference"><span class="nav-number">3.</span> <span class="nav-text">method reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream"><span class="nav-number">4.</span> <span class="nav-text">Stream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读材料"><span class="nav-number">5.</span> <span class="nav-text">阅读材料</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">ShiLe</span></div><div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div><div class="theme-info">主题 - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script><script type="text/javascript">var disqus_config=function(){this.page.url="http://lewoer.github.io/posts/caddbeba/",this.page.identifier="posts/caddbeba/",this.page.title="Lambda Expression"},d=document,s=d.createElement("script");s.src="https://.disqus.com/embed.js",s.setAttribute("data-timestamp",""+ +new Date),(d.head||d.body).appendChild(s)</script><script type="text/javascript">// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });</script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script><script>AV.initialize("2nTkcWntGeHMA1L2TKVWQQHY-gzGzoHsz","1JBR79Ti3y0kU6MHxqpNSkzw")</script><script>function showTime(e){var t=new AV.Query(e),c=[],u=$(".leancloud_visitors");u.each(function(){c.push($(this).attr("id").trim())}),t.containedIn("url",c),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var n=0;n<e.length;n++){var o=e[n],i=o.get("url"),s=o.get("time"),r=document.getElementById(i);$(r).find(t).text(s)}for(n=0;n<c.length;n++){i=c[n],r=document.getElementById(i);var l=$(r).find(t);""==l.text()&&l.text(0)}}else u.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(i){var e=$(".leancloud_visitors"),s=e.attr("id").trim(),r=e.attr("data-flag-title").trim(),t=new AV.Query(i);t.equalTo("url",s),t.find({success:function(e){if(0<e.length){var t=e[0];t.fetchWhenSave(!0),t.increment("time"),t.save(null,{success:function(e){$(document.getElementById(s)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var n=new i,o=new AV.ACL;o.setPublicReadAccess(!0),o.setPublicWriteAccess(!0),n.setACL(o),n.set("title",r),n.set("url",s),n.set("time",1),n.save(null,{success:function(e){$(document.getElementById(s)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):1<$(".post-title-link").length&&showTime(e)})</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
